@@ -20,7 +20,7 @@ RUN set -xe; \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
     apk add --no-cache --purge -uU \
-        curl icu-libs unzip zlib-dev musl \
+        curl icu-libs unzip zlib-dev musl libcrypto1.1 \
         mesa-gl mesa-dri-swrast \
         libreoffice libreoffice-base libreoffice-lang-uk \
         ttf-freefont ttf-opensans ttf-font-awesome ttf-ubuntu-font-family ttf-inconsolata \
