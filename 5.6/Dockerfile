@@ -16,20 +16,12 @@ ENV DRUSH_LAUNCHER_VER="0.6.0" \
 
 USER root
 
-RUN set -xe; \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
-    apk add --no-cache --purge -uU \
-        curl icu-libs unzip zlib-dev musl \
-        # 1.2.25-r5 version has some issue during install. Use version that compatible with alpine 3.8.
-        'xmlsec<1.2.25-r3' \
-        mesa-gl mesa-dri-swrast \
-        libreoffice libreoffice-base libreoffice-lang-uk \
-        ttf-freefont ttf-opensans ttf-font-awesome ttf-ubuntu-font-family ttf-inconsolata \
-        libstdc++ dbus-x11; \
-    rm -rf /var/cache/apk/* /tmp/*
-
 RUN set -ex; \
+    apk add --no-cache --purge -uU \
+        libreoffice \
+#        ttf-font-awesome \
+        ttf-freefont ttf-opensans ttf-ubuntu-font-family ttf-inconsolata; \
+    rm -rf /var/cache/apk/* /tmp/*; \
     \
     su-exec wodby composer global require drush/drush:^8.0; \
     \
