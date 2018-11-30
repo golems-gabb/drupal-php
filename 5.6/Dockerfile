@@ -22,9 +22,6 @@ RUN set -ex; \
 #        ttf-font-awesome \
         ttf-freefont ttf-opensans ttf-ubuntu-font-family ttf-inconsolata; \
     rm -rf /var/cache/apk/* /tmp/*; \
-    mkdir /home/www-data/.config; \
-    chmod 700 /home/www-data/.config; \
-    chown www-data /home/www-data/.config; \
     \
     su-exec wodby composer global require drush/drush:^8.0; \
     \
