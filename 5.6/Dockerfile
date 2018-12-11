@@ -44,7 +44,14 @@ RUN set -ex; \
     \
     # Clean up
     su-exec wodby drush cc drush; \
-    su-exec wodby composer clear-cache
+    su-exec wodby composer clear-cache; \
+    # Add repository for wkhtmltopdf library
+    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community/' >> /etc/apk/repositories ; \
+    # Add repository for qt5 library dependencies
+    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main/' >> /etc/apk/repositories ; \
+    apk add --no-cache --purge -U wkhtmltopdf; \
+    rm -rf /var/cache/apk/* /tmp/*; \
+    ln -s /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
 USER wodby
 
